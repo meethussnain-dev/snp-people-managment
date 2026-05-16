@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\People;
+namespace App\Livewire\People;
 
 use App\Repositories\Contracts\InterestCatalogRepositoryInterface;
 use App\Repositories\Contracts\LanguageRepositoryInterface;

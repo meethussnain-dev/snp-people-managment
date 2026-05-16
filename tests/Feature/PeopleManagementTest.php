@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\People\Form;
+use App\Livewire\People\Form;
 use App\Jobs\SendPersonCapturedEmailJob;
 use App\Models\Interest;
 use App\Models\Language;

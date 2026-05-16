@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\People;
+namespace App\Livewire\People;
 
 use App\Services\PersonService;
 use Livewire\Component;
