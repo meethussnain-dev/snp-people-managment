@@ -1,11 +1,11 @@
 # SNP People Manager
 
-SNP People Manager is a Laravel 8 and Livewire 2 implementation of the assessment brief. It provides authenticated CRUD management for people, stores languages and interests as reference data, and sends an email notification when a person is captured through an event, listener, job, and mail flow.
+SNP People Manager is a Laravel 13 and Livewire 4 implementation of the assessment brief. It provides authenticated CRUD management for people, stores languages and interests as reference data, and sends an email notification when a person is captured through an event, listener, job, and mail flow.
 
 ## Delivery Summary
 
-- Framework: Laravel 8
-- UI layer: Livewire 2 + Blade
+- Framework: Laravel 13
+- UI layer: Livewire 4 + Blade
 - Database: MySQL
 - Authentication: Laravel auth with a seeded admin user
 - Architecture: service and repository pattern, separated from the UI layer
@@ -24,9 +24,9 @@ This project aligns with the brief in these areas:
 
 ## Tech Stack
 
-- PHP 7.3+ compatible through Laravel 8 requirements
-- Laravel 8
-- Livewire 2
+- PHP 8.3+
+- Laravel 13
+- Livewire 4
 - MySQL
 - Bootstrap 5.3 via CDN
 - Bootstrap Icons via CDN
@@ -54,6 +54,8 @@ This project aligns with the brief in these areas:
 5. Run `php artisan migrate:fresh --seed`
 6. Start the application with either `php artisan serve --host=127.0.0.1 --port=8080` or a normal Apache/Nginx virtual host pointing to the `public` directory
 
+No `npm install`, `npm run dev`, or other frontend build command is required because the application uses CDN-loaded UI assets.
+
 ## Virtual Host Support
 
 The application is compatible with a normal virtual-host deployment.
@@ -79,6 +81,7 @@ This satisfies the brief's requirement that the system must be able to work on a
 - Registration is intentionally disabled because the brief only requires an authenticated application with known access credentials
 - The mail driver is set to `log`, so generated emails can be verified safely from the log output during assessment
 - Bootstrap assets are loaded from CDNs, so a frontend build step is not required to run the application
+- Unused Laravel Mix / npm build files were removed during cleanup because the application does not rely on compiled local frontend assets
 - Because migrations and seeders are included, reviewers do not need an SQL dump unless they explicitly prefer one
 
 ## Verification
@@ -108,4 +111,4 @@ The application was re-tested with a clean database reset before handoff:
 - Run `php artisan migrate:fresh --seed`
 - Confirm the admin login still works
 - Confirm the People workflow still works after the reset
-- Verified on `2026-05-15` by running `php artisan migrate:fresh --seed` successfully and boot-checking the app with `php artisan route:list`
+- Re-verified on `2026-05-17` by running `composer install`, `php artisan route:list`, and `php artisan migrate:fresh --seed` successfully

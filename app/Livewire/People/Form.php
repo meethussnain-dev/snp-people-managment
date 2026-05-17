@@ -2,8 +2,8 @@
 
 namespace App\Livewire\People;
 
-use App\Repositories\Contracts\InterestCatalogRepositoryInterface;
-use App\Repositories\Contracts\LanguageRepositoryInterface;
+use App\Services\InterestCatalogService;
+use App\Services\LanguageService;
 use App\Services\PersonService;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
@@ -17,14 +17,14 @@ class Form extends Component
     protected $personService;
 
     /**
-     * @var LanguageRepositoryInterface
+        * @var LanguageService
      */
-    protected $languageRepository;
+        protected $languageService;
 
     /**
-    * @var InterestCatalogRepositoryInterface
+        * @var InterestCatalogService
      */
-    protected $interestRepository;
+        protected $interestService;
 
     /**
      * @var int|null
@@ -54,12 +54,12 @@ class Form extends Component
 
     public function boot(
         PersonService $personService,
-        LanguageRepositoryInterface $languageRepository,
-        InterestCatalogRepositoryInterface $interestRepository
+        LanguageService $languageService,
+        InterestCatalogService $interestService
     ) {
         $this->personService = $personService;
-        $this->languageRepository = $languageRepository;
-        $this->interestRepository = $interestRepository;
+        $this->languageService = $languageService;
+        $this->interestService = $interestService;
     }
 
     public function mount($person = null): void
@@ -106,12 +106,12 @@ class Form extends Component
 
     public function getLanguagesProperty()
     {
-        return $this->languageRepository->all(['id', 'name'], [], 'name');
+        return $this->languageService->allLanguages();
     }
 
     public function getInterestOptionsProperty()
     {
-        return $this->interestRepository->all(['id', 'name'], [], 'name');
+        return $this->interestService->allInterests();
     }
 
     public function submit()

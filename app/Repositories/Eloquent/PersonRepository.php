@@ -7,6 +7,11 @@ use App\Repositories\Contracts\PersonRepositoryInterface;
 
 class PersonRepository extends SnpRepository implements PersonRepositoryInterface
 {
+    public function __construct(Person $person)
+    {
+        parent::__construct($person);
+    }
+
     public function paginatedList(int $perPage, ?string $search = null)
     {
         return $this->newQuery()
