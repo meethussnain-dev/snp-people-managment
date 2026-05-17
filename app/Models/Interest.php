@@ -19,6 +19,6 @@ class Interest extends Model
 
     public function people(): BelongsToMany
     {
-        return $this->belongsToMany(Person::class)->orderBy('name');
+        return $this->belongsToMany(Person::class);
     }
 }

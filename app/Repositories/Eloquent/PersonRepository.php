@@ -3,9 +3,9 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Person;
-use App\Repositories\Contracts\PersonRepositoryInterface;
+use App\Repositories\PersonRepositoryInterface;
 
-class PersonRepository extends SnpRepository implements PersonRepositoryInterface
+class PersonRepository extends BaseRepository implements PersonRepositoryInterface
 {
     public function __construct(Person $person)
     {
@@ -14,7 +14,7 @@ class PersonRepository extends SnpRepository implements PersonRepositoryInterfac
 
     public function paginatedList(int $perPage, ?string $search = null)
     {
-        return $this->newQuery()
+        return $this->model->newQuery()
             ->with(['language', 'interests', 'creator'])
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($builder) use ($search) {

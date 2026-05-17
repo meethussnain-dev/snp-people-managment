@@ -3,12 +3,12 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Language;
-use App\Repositories\Contracts\LanguageRepositoryInterface;
+use App\Repositories\LanguageRepositoryInterface;
 
-class LanguageRepository extends SnpRepository implements LanguageRepositoryInterface
+class LanguageRepository extends BaseRepository implements LanguageRepositoryInterface
 {
-	public function __construct(Language $language)
-	{
-		parent::__construct($language);
-	}
+    public function __construct(Language $language)
+    {
+        parent::__construct($language);
+    }
 }

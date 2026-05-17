@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\InterestCatalogRepositoryInterface;
+use App\Repositories\InterestCatalogRepositoryInterface;
 
 class InterestCatalogService
 {

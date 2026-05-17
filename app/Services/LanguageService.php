@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\LanguageRepositoryInterface;
+use App\Repositories\LanguageRepositoryInterface;
 
 class LanguageService
 {

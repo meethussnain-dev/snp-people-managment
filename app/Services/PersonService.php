@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Events\PersonCaptured;
 use App\Models\Person;
-use App\Repositories\Contracts\PersonRepositoryInterface;
+use App\Repositories\PersonRepositoryInterface;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 

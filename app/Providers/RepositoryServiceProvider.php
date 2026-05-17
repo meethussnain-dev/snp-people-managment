@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Repositories\Contracts\InterestCatalogRepositoryInterface;
-use App\Repositories\Contracts\LanguageRepositoryInterface;
-use App\Repositories\Contracts\PersonRepositoryInterface;
+use App\Repositories\InterestCatalogRepositoryInterface;
+use App\Repositories\LanguageRepositoryInterface;
+use App\Repositories\PersonRepositoryInterface;
 use App\Repositories\Eloquent\InterestCatalogRepository;
 use App\Repositories\Eloquent\LanguageRepository;
 use App\Repositories\Eloquent\PersonRepository;

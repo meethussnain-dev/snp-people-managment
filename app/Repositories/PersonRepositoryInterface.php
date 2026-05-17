@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Contracts;
+namespace App\Repositories;
 
-interface PersonRepositoryInterface extends CoreRepositoryInterface
+interface PersonRepositoryInterface extends BaseRepositoryInterface
 {
     public function paginatedList(int $perPage, ?string $search = null);
 
