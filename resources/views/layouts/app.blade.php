@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? config('app.name', 'SNP People Manager') }}</title>
+    <title>{{ $title ?? config('app.name', 'People Management System') }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,39 +14,39 @@
     @livewireStyles
     <style>
         :root {
-            --snp-primary:      #2563eb;
-            --snp-primary-dark: #1d4ed8;
-            --snp-nav-bg:       #0f172a;
-            --snp-surface:      #f1f5f9;
-            --snp-border:       #e2e8f0;
-            --snp-text:         #1e293b;
-            --snp-muted:        #64748b;
+            --pms-primary:      #2563eb;
+            --pms-primary-dark: #1d4ed8;
+            --pms-nav-bg:       #0f172a;
+            --pms-surface:      #f1f5f9;
+            --pms-border:       #e2e8f0;
+            --pms-text:         #1e293b;
+            --pms-muted:        #64748b;
         }
         *, *::before, *::after { box-sizing: border-box; }
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--snp-surface);
-            color: var(--snp-text);
+            background-color: var(--pms-surface);
+            color: var(--pms-text);
             font-size: 0.9rem;
             line-height: 1.6;
         }
 
         /* ── Navbar ────────────────────────────────────────────── */
-        .snp-nav {
-            background: var(--snp-nav-bg);
+        .pms-nav {
+            background: var(--pms-nav-bg);
             padding: 0.65rem 0;
         }
-        .snp-nav .navbar-brand {
+        .pms-nav .navbar-brand {
             font-weight: 700;
             font-size: 1rem;
             color: #fff;
             letter-spacing: -0.01em;
             gap: 0.4rem;
         }
-        .snp-nav .navbar-brand .bi {
+        .pms-nav .navbar-brand .bi {
             color: #60a5fa;
         }
-        .snp-nav .nav-link {
+        .pms-nav .nav-link {
             color: rgba(255,255,255,0.65) !important;
             font-size: 0.855rem;
             font-weight: 500;
@@ -54,16 +54,16 @@
             border-radius: 6px;
             transition: all .15s;
         }
-        .snp-nav .nav-link:hover,
-        .snp-nav .nav-link.active {
+        .pms-nav .nav-link:hover,
+        .pms-nav .nav-link.active {
             color: #fff !important;
             background: rgba(255,255,255,0.08);
         }
-        .snp-nav .nav-user {
+        .pms-nav .nav-user {
             font-size: 0.8rem;
             color: rgba(255,255,255,0.45);
         }
-        .snp-nav .btn-logout {
+        .pms-nav .btn-logout {
             font-size: 0.8rem;
             padding: 0.35rem 0.9rem;
             border-radius: 6px;
@@ -74,7 +74,7 @@
             transition: all .15s;
             text-decoration: none;
         }
-        .snp-nav .btn-logout:hover {
+        .pms-nav .btn-logout:hover {
             background: rgba(255,255,255,0.1);
             border-color: rgba(255,255,255,0.45);
             color: #fff;
@@ -82,19 +82,19 @@
 
         /* ── Cards ─────────────────────────────────────────────── */
         .card {
-            border: 1px solid var(--snp-border);
+            border: 1px solid var(--pms-border);
             border-radius: 12px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
         }
         .card-header {
             background: #fff;
-            border-bottom: 1px solid var(--snp-border);
+            border-bottom: 1px solid var(--pms-border);
             border-radius: 12px 12px 0 0 !important;
             padding: 1rem 1.25rem;
         }
         .card-footer {
             background: #fafafa;
-            border-top: 1px solid var(--snp-border);
+            border-top: 1px solid var(--pms-border);
             border-radius: 0 0 12px 12px !important;
         }
 
@@ -107,7 +107,7 @@
             transition: border-color .15s, box-shadow .15s;
         }
         .form-control:focus, .form-select:focus {
-            border-color: var(--snp-primary);
+            border-color: var(--pms-primary);
             box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
         }
         .form-control.is-invalid, .form-select.is-invalid {
@@ -133,12 +133,12 @@
             font-size: 0.875rem;
         }
         .btn-primary {
-            background: var(--snp-primary);
-            border-color: var(--snp-primary);
+            background: var(--pms-primary);
+            border-color: var(--pms-primary);
         }
         .btn-primary:hover {
-            background: var(--snp-primary-dark);
-            border-color: var(--snp-primary-dark);
+            background: var(--pms-primary-dark);
+            border-color: var(--pms-primary-dark);
         }
         .btn-icon {
             width: 32px;
@@ -152,25 +152,25 @@
         }
 
         /* ── Table ─────────────────────────────────────────────── */
-        .snp-table { font-size: 0.855rem; }
-        .snp-table thead th {
+        .pms-table { font-size: 0.855rem; }
+        .pms-table thead th {
             background: #f8fafc;
             font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            color: var(--snp-muted);
-            border-bottom: 1px solid var(--snp-border);
+            color: var(--pms-muted);
+            border-bottom: 1px solid var(--pms-border);
             white-space: nowrap;
             padding: 0.75rem 1rem;
         }
-        .snp-table tbody tr {
+        .pms-table tbody tr {
             transition: background .1s;
         }
-        .snp-table tbody tr:hover {
+        .pms-table tbody tr:hover {
             background: #f8fafc;
         }
-        .snp-table td {
+        .pms-table td {
             padding: 0.8rem 1rem;
             border-color: #f1f5f9;
             vertical-align: middle;
@@ -274,7 +274,7 @@
             margin: 0;
         }
         .page-header p {
-            color: var(--snp-muted);
+            color: var(--pms-muted);
             font-size: 0.875rem;
             margin: 0.2rem 0 0;
         }
@@ -285,16 +285,16 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            color: var(--snp-muted);
+            color: var(--pms-muted);
             margin-bottom: 0.75rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--snp-border);
+            border-bottom: 1px solid var(--pms-border);
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <nav class="snp-nav navbar navbar-expand-md">
+        <nav class="pms-nav navbar navbar-expand-md">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <i class="bi bi-people-fill me-2"></i>{{ config('app.name') }}

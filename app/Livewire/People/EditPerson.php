@@ -11,6 +11,8 @@ class EditPerson extends PersonFormComponent
 {
     public string $heading = 'Edit Person';
 
+    public string $icon = 'pencil-square';
+
     public string $pageDescription = 'Review and update an existing person record without leaving the Livewire workflow.';
 
     public string $submitLabel = 'Update Person';
@@ -31,6 +33,6 @@ class EditPerson extends PersonFormComponent
 
     public function render()
     {
-        return view('livewire.people.edit-person');
+        return view('livewire.people.create-edit-form');
     }
 }

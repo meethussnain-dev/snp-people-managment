@@ -36,6 +36,13 @@ class ListPeople extends Component
         $this->personService = $personService;
     }
 
+    public function mount(): void
+    {
+        if (session()->has('status')) {
+            $this->notification = session()->pull('status');
+        }
+    }
+
     public function updatingSearch(): void
     {
         $this->resetPage();

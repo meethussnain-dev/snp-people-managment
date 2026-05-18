@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SNP People Manager'),
+    'name' => env('APP_NAME', 'People Management System'),
 
     /*
     |--------------------------------------------------------------------------

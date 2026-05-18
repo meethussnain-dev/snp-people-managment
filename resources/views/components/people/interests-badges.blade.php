@@ -1,13 +1,3 @@
-@props([
-    'interests',
-])
-
-@php
-    $visible = $interests->take(2);
-    $overflow = $interests->count() - $visible->count();
-    $allNames = $interests->pluck('name')->implode(', ');
-@endphp
-
 @if ($interests->isNotEmpty())
     <div class="interests-cell">
         @foreach ($visible as $interest)

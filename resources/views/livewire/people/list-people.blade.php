@@ -1,5 +1,12 @@
 <div>
     <div class="container">
+        @if ($notification)
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>{{ $notification }}
+                <button type="button" class="btn-close" aria-label="Close" wire:click="dismissNotification"></button>
+            </div>
+        @endif
+
         <x-headers.page-header
             title="People"
             description="Manage captured people and keep their profile data current."
@@ -9,13 +16,6 @@
                 <i class="bi bi-plus-lg"></i> Add Person
             </a>
         </x-headers.page-header>
-
-        @if ($notification)
-            <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-                <i class="bi bi-check-circle-fill me-2"></i>{{ $notification }}
-                <button type="button" class="btn-close" aria-label="Close" wire:click="dismissNotification"></button>
-            </div>
-        @endif
 
         <div class="card">
             <div class="card-header">
@@ -41,7 +41,7 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table snp-table mb-0">
+                <table class="table pms-table mb-0">
                     <thead>
                         <tr>
                             <th>Name</th>

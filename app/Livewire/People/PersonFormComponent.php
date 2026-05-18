@@ -24,6 +24,8 @@ abstract class PersonFormComponent extends Component
 
     public string $pageDescription = 'All fields are required.';
 
+    public string $icon = 'person-plus';
+
     public string $submitLabel = 'Save Person';
 
     public function boot(

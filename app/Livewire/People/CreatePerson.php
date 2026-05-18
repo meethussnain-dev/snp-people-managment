@@ -24,6 +24,6 @@ class CreatePerson extends PersonFormComponent
 
     public function render()
     {
-        return view('livewire.people.create-person');
+        return view('livewire.people.create-edit-form');
     }
 }

@@ -25,6 +25,7 @@ class PersonSaveRequest extends FormRequest
             'sa_id_number' => [
                 'required',
                 'string',
+                'min:13',
                 'max:255',
                 Rule::unique('people', 'sa_id_number')->ignore($personId),
             ],

@@ -1,25 +1,6 @@
-@props([
-    'name',
-    'label',
-    'wireModel',
-    'type' => 'text',
-    'placeholder' => '',
-    'icon' => null,
-    'maxlength' => null,
-    'wireModifier' => 'blur',
-])
-
 @php
-    $error = $errors->first($name);
-    $inputClasses = 'form-control' . ($icon ? ' border-start-0 ps-0' : '') . ($error ? ' is-invalid' : '');
-@endphp
-
-@php
-    $wireBinding = match ($wireModifier) {
-        'live' => 'wire:model.live',
-        'blur' => 'wire:model.blur',
-        default => 'wire:model',
-    };
+    $fieldError = $errors->first($name);
+    $fieldClasses = 'form-control' . ($icon ? ' border-start-0 ps-0' : '') . ($fieldError ? ' is-invalid' : '');
 @endphp
 
 <label for="{{ $name }}" class="form-label">{{ $label }}</label>
@@ -32,27 +13,27 @@
         <input
             id="{{ $name }}"
             type="{{ $type }}"
-            class="{{ $inputClasses }}"
+            class="{{ $fieldClasses }}"
             placeholder="{{ $placeholder }}"
             @if ($maxlength) maxlength="{{ $maxlength }}" @endif
             {{ $wireBinding }}="{{ $wireModel }}"
             {{ $attributes }}
         >
     </div>
-    @if ($error)
-        <div class="invalid-feedback d-block">{{ $error }}</div>
+    @if ($fieldError)
+        <div class="invalid-feedback d-block">{{ $fieldError }}</div>
     @endif
 @else
     <input
         id="{{ $name }}"
         type="{{ $type }}"
-        class="{{ $inputClasses }}"
+        class="{{ $fieldClasses }}"
         placeholder="{{ $placeholder }}"
         @if ($maxlength) maxlength="{{ $maxlength }}" @endif
         {{ $wireBinding }}="{{ $wireModel }}"
         {{ $attributes }}
     >
-    @if ($error)
-        <div class="invalid-feedback">{{ $error }}</div>
+    @if ($fieldError)
+        <div class="invalid-feedback d-block">{{ $fieldError }}</div>
     @endif
 @endif

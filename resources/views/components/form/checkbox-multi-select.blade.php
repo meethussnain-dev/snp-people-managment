@@ -1,37 +1,14 @@
-@props([
-    'name',
-    'label',
-    'wireModel',
-    'options' => [],
-    'optionValue' => 'id',
-    'optionLabel' => 'name',
-    'wireModifier' => 'blur',
-])
-
-@php
-    $error = $errors->first($name) ?: $errors->first($name . '.*');
-    $wireBinding = match ($wireModifier) {
-        'live' => 'wire:model.live',
-        'blur' => 'wire:model.blur',
-        default => 'wire:model',
-    };
-@endphp
-
 <label class="form-label d-block">{{ $label }}</label>
 <div class="d-flex flex-wrap gap-2{{ $error ? ' is-invalid' : '' }}">
     @foreach ($options as $option)
-        @php
-            $value = is_object($option) ? $option->{$optionValue} : $option[$optionValue];
-            $text = is_object($option) ? $option->{$optionLabel} : $option[$optionLabel];
-        @endphp
         <div class="interest-pill">
             <input
-                id="{{ $name }}-{{ $value }}"
+                id="{{ $name }}-{{ $optionValue($option) }}"
                 type="checkbox"
-                value="{{ $value }}"
+                value="{{ $optionValue($option) }}"
                 {{ $wireBinding }}="{{ $wireModel }}"
             >
-            <label for="{{ $name }}-{{ $value }}">{{ $text }}</label>
+            <label for="{{ $name }}-{{ $optionValue($option) }}">{{ $optionText($option) }}</label>
         </div>
     @endforeach
 </div>

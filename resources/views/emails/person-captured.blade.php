@@ -10,4 +10,4 @@
     <li>Language: {{ $person->language->name }}</li>
 </ul>
 
-<p>Regards,<br>SNP People Manager</p>
+<p>Regards,<br>People Management System</p>
