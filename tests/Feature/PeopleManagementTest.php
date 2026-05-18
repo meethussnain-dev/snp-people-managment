@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Livewire\People\Form;
+use App\Livewire\People\CreatePerson;
 use App\Jobs\SendPersonCapturedEmailJob;
 use App\Models\Interest;
 use App\Models\Language;
@@ -41,16 +41,16 @@ class PeopleManagementTest extends TestCase
         })->all();
 
         Livewire::actingAs($user)
-            ->test(Form::class)
-            ->set('name', 'John')
-            ->set('surname', 'Doe')
-            ->set('sa_id_number', '8001015009087')
-            ->set('mobile_number', '0821234567')
-            ->set('email', 'john.doe@example.com')
-            ->set('birth_date', '1980-01-01')
-            ->set('language_id', (string) $languageId)
-            ->set('interests', $interestIds)
-            ->call('submit')
+            ->test(CreatePerson::class)
+            ->set('form.name', 'John')
+            ->set('form.surname', 'Doe')
+            ->set('form.sa_id_number', '8001015009087')
+            ->set('form.mobile_number', '0821234567')
+            ->set('form.email', 'john.doe@example.com')
+            ->set('form.birth_date', '1980-01-01')
+            ->set('form.language_id', (string) $languageId)
+            ->set('form.interests', $interestIds)
+            ->call('save')
             ->assertRedirect(route('people.index'));
 
         $this->assertDatabaseHas('people', [
@@ -71,17 +71,17 @@ class PeopleManagementTest extends TestCase
         $user = User::where('email', 'admin@snp.test')->firstOrFail();
 
         Livewire::actingAs($user)
-            ->test(Form::class)
-            ->call('submit')
+            ->test(CreatePerson::class)
+            ->call('save')
             ->assertHasErrors([
-                'name' => 'required',
-                'surname' => 'required',
-                'sa_id_number' => 'required',
-                'mobile_number' => 'required',
-                'email' => 'required',
-                'birth_date' => 'required',
-                'language_id' => 'required',
-                'interests' => 'required',
+                'form.name' => 'required',
+                'form.surname' => 'required',
+                'form.sa_id_number' => 'required',
+                'form.mobile_number' => 'required',
+                'form.email' => 'required',
+                'form.birth_date' => 'required',
+                'form.language_id' => 'required',
+                'form.interests' => 'required',
             ]);
     }
 }

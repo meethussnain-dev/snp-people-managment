@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\People\PersonFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,6 +11,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Person extends Model
 {
     use HasFactory;
+
+    protected static function newFactory()
+    {
+        return PersonFactory::new();
+    }
 
     /**
      * @var array<int, string>

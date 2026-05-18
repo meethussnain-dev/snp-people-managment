@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Livewire\People\CreatePerson;
+use App\Livewire\People\EditPerson;
+use App\Livewire\People\ListPeople;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return auth()->check()
+    return Auth::check()
         ? redirect()->route('people.index')
         : redirect()->route('login');
 });
@@ -26,9 +29,7 @@ Auth::routes(['register' => false]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::view('/people', 'people.index')->name('people.index');
-    Route::view('/people/create', 'people.form')->name('people.create');
-    Route::get('/people/{person}/edit', function ($person) {
-        return view('people.form', ['person' => $person]);
-    })->name('people.edit');
+    Route::get('/people', ListPeople::class)->name('people.index');
+    Route::get('/people/create', CreatePerson::class)->name('people.create');
+    Route::get('/people/{person}/edit', EditPerson::class)->name('people.edit');
 });

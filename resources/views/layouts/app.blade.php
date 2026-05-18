@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'SNP People Manager') }}</title>
+    <title>{{ $title ?? config('app.name', 'SNP People Manager') }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -349,6 +349,7 @@
                     </div>
                 @endif
             </div>
+            {{ $slot ?? '' }}
             @yield('content')
         </main>
     </div>
@@ -363,8 +364,12 @@
             });
         }
         document.addEventListener('DOMContentLoaded', initTooltips);
-        document.addEventListener('livewire:load', function () {
-            Livewire.hook('message.processed', function () { initTooltips(); });
+        document.addEventListener('livewire:initialized', function () {
+            initTooltips();
+
+            Livewire.hook('morph.updated', function () {
+                initTooltips();
+            });
         });
     </script>
 </body>
